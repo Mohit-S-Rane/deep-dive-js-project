@@ -29,5 +29,36 @@
 3. Object ->
     * access object property by two .props_name & ["props_name"]
     * Object.freeze -> existing properties non-writable and non-configurable
-    * Insert any variable or method by objectName.variable_or_mehod_name
-    
+    * insert any variable or method(call back function) by objectName.variable_or_method_name
+    * you can access nested object value by simply objectName.variableName
+    * combine multiple object by Object.assign({}, obj1, obj2, obj4) => Return a given (empty) object
+    * spread is also useful in object as {...obj1, ...obj2} => store in new object and modify(insert or update) keyValue pair
+    * Object.keys(objectName) => return all keys in array format
+    * Object.values(objectName) => return all values in array format
+    * Object.entries(objectName) => return key value pair of object in array format as [ [ 'id', '123abc' ], [ 'name', 'Sammy' ], [ 'isLoggedIn', false ] ]
+    * Object.hasOwnProperty('x') => return boolean value if given x property exist in object
+    * destructuring object is following way => const {courseInstructor: instructor, price: p} = objectName then simply access it by variable name => instructor
+
+4. Function ->
+    * nothing but block of code which take input as argument(variable, object, array) & output as return value
+    * default value in argument as functionName(val=1, val2=2)
+    * if you want multiple value as a input functionName(val1, val2, ...num1) => num1 hold a value as [x, y, z]
+
+5. Scope ->
+    * scope is define within if-else, function & loop(iteration) => outside variable within scope is accesible but revserse is not possible (variableName is not define error)
+    *  function functionName(x) {return x} => function defination is write anywhere is possible in file -> not restrict to define 1st & then call functionName() || if you can store function in variable, that time defination is must before accessing variable as function. because during memory creation phase within execution context -> function as variable initialize as undefine but regular function treat as definaiton -> at time of execution of function(execution phase) create there own execution context. i.e  when initialize variable as a function during execution phase that time function execute in (new) execution context and set function return value in variable.  <--Interesting Section>
+
+6. Arrow -> 
+    * function within object has right's to access there parent variable with the help of this keyword = rexical scope. Within function this => return parent object with all variable & functions
+
+            {
+                username: 'sam',
+                price: 999,
+                welcomeMessage: [Function: welcomeMessage]
+            }
+
+    * this in gloabl file, return a empty {} object & within browser return window object
+    * this within function return multiple values sunch as global[], fun-> clearInterval, clearTimeout, setInterval, setTimeout, clearImmediate, setImmediate & performance{}
+    * arrow function also return this as empty {} object
+    * if you can use {} in arrow function that case return keyword is must. in single line with () and without () is possible.
+
