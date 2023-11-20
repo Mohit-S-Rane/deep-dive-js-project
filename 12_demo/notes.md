@@ -60,5 +60,51 @@
     * this in gloabl file, return a empty {} object & within browser return window object
     * this within function return multiple values sunch as global[], fun-> clearInterval, clearTimeout, setInterval, setTimeout, clearImmediate, setImmediate & performance{}
     * arrow function also return this as empty {} object
-    * if you can use {} in arrow function that case return keyword is must. in single line with () and without () is possible.
+    * if you can use {} in arrow function that case return keyword is must. but in single line with () and without () is possible.
+7. Control flow ->
+    * && || in if condition => if (userLoggedIn && debitCard || 2==3) 
+    * switch case 
+    * truthy values => "0", 'false', " ", [], {}, function(){}
+    * falsy values => false, 0, -0, BigInt 0n, "", null, undefined, NaN
+    * how to check empty object => 
 
+        const emptyObj = {}
+
+        if (Object.keys(emptyObj).length === 0) {
+            console.log("Object is empty");
+        }
+    * terniary operator => condition ? true : false
+8. Iteration ->
+    * for loop => for (let index = 0; index < myArray.length; index++) {}
+    * while => while (arr < myArray.length) {arr = arr + 1}
+    * do while => do {score++} while (score <= 10);
+
+    * for loop on array => const arr = [1, 2, 3, 4, 5]
+        for (const num of arr) {console.log(num)}
+    * for loop on string => const greetings = "Hello world!"
+        for (const greet of greetings) {log(greet)}
+    * for loop on map => const map = new Map()
+        map.set('IN', "India") 
+        for (const [key, value] of map) {log(key, value)}
+    * for on object => <b> myObject is not iterable</b>
+        <code>
+        const myObject = {game1: 'NFS'    game2: 'Spiderman'}
+        for (const [key, value] of myObject) {log(key, value)}</code>
+    * if you want to iterate object => 
+        <code>
+        const myObject = {js: 'javascript',cpp: 'C++',rb: "ruby", swift: "swift by apple"}
+
+        for (const key in myObject) {
+            console.log(`${key} shortcut is for ${myObject[key]}`);
+        }
+        </code>
+    * also useful for array =>
+        <code>
+            const programming = ["js", "rb", "py", "java", "cpp"]
+
+            for (const key in programming) {
+                console.log(programming[key]);
+            }
+        </code>
+    * <b>it is not possible with map</b> <code>for (const key in map) {}</code>
+    
