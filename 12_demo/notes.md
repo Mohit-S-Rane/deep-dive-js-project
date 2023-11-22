@@ -100,11 +100,60 @@
         </code>
     * also useful for array =>
         <code>
-            const programming = ["js", "rb", "py", "java", "cpp"]
-
+            const programming = ["js", "rb", "py", "java", "cpp"] <br>
             for (const key in programming) {
                 console.log(programming[key]);
             }
         </code>
     * <b>it is not possible with map</b> <code>for (const key in map) {}</code>
+    * forEach on array => <code>[].forEach((value)=> log(value))</code>
+    * how to pass function in forEach() => 
+    <code>
+
+        const coding = ["js", "ruby", "java", "python", "cpp"]
+        function printMe(item){
+        console.log(item)}
+        coding.forEach(printMe) 
+    </code>
+
+    * in each interation get value, index, arr => 
+    <code>
+
+        coding.forEach( (item, index, arr)=> {
+            console.log(item, index, arr);
+        })
+    </code>
+    * iterate array of object => myCoding is array of object
+    <code>
+
+        myCoding.forEach( (item) => {
+        console.log(item.<objectPropertyName>)})
+    </code> 
+    * forEach() is not useful for filtering data, it never store return data in new variable. If you want store iterable value in new array that time you can go through [].push(value) =>
+    <code>
     
+        const values = coding.forEach( (item) => console.log
+        (item))
+        => undefined
+    </code>
+    * filter data by filter() =>
+    <code>
+
+        const newNums = myNums.filter( (num) => {
+            return num > 4} )
+    </code>
+    * [].map() use for perform action within map, you can also use multiple map on same array => 
+    <code>
+
+        const newNums = myNumers
+        
+                        .map((num) => num * 10 )
+                        .map( (num) => num + 1)
+                        .filter( (num) => num >= 40)
+    </code>
+
+    * reduce is use to calculate sum of all array value with the help of holding previous calculated value => 
+    <code>
+
+        const myTotal = myNums.reduce( (acc, curr) => acc+curr, 0)
+    </code>
