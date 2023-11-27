@@ -157,3 +157,111 @@
 
         const myTotal = myNums.reduce( (acc, curr) => acc+curr, 0)
     </code>
+
+9. DOM ->
+    
+    * how to access html element wich is associated with className => 
+    <code>
+    
+        *   const parent = document.querySelector('.parent') => retun complete element with child
+    </code>
+    <code>
+
+        *   parent.children => return HTML collection
+    </code>
+        *   access one of child from parent element => parent.children[0].innerHTML (use loop to access all child)
+        *   how to change style of parent => parent.children[1].style.color = "orange"
+        *   first & last element of child (return HTML element) => parent.firstElementChild & parent.lastElementChild
+        *   if one class used for multiple element
+            *   const dayOne = document.querySelector('.day') => return first element
+            *   dayOne.parentElement => return parent element
+            *   dayOne.nextElementSibling => return 2nd element
+            *   parent.childNodes => return children in the form of node list[]
+        *   create element in script => document.createElement('div')
+        *   add class,id & setAttribute +> div.className = 'main', div.id = Math.round(Math.random() * 10 + 1), div.setAttribute("title", generated title)
+        *   add style => div.style.backgroundColor = "green", div.style.padding = "12px"
+        *   create text node => const addText = documet.createTextNode("text")
+        *   add text node in created element => div.appendChild(addText)
+        *   append created element in body => document.body.appendChild(div)
+        *   write a function which use to add element in html tag => 
+    <code>
+
+            function addLanguage(langName){
+                const li = document.createElement('li');
+                li.innerHTML = `${langName}`
+                document.querySelector('.language').appendChild(li)
+            }
+            addLanguage("python")
+            addLanguage("typescript")
+    </code>
+        *   updated version => create li element-> create text node as well as append in li-> access element by className at same time append li inside it.
+    <code>
+
+            function addOptiLanguage(langName){
+                const li = document.createElement('li');
+                li.appendChild(document.createTextNode(langName))
+                document.querySelector('.language').appendChild(li)
+            }
+            addOptiLanguage('golang')
+    </code>
+        *   when you need to get 2nd child of li =>
+        <code>
+            const secondLang = document.querySelector("li:nth-child(2)")
+        </code>
+        *   edit 2nd-li(create element & replace it) => 
+        <code>
+
+            const newli = document.createElement('li')
+            newli.textContent = "Mojo"
+            secondLang.replaceWith(newli)
+        </code>
+        *   edit by outerHTML =>
+        <code>
+
+            const firstLang = document.querySelector("li:first-child")
+            firstLang.outerHTML = `<li>TypeScript</li>`
+        </code>
+        *   remove element =>
+        <code>
+
+            const lastLang = document.querySelector('li:last-child')
+            lastLang.remove()
+        </code>
+
+10. Project ->
+    *   not added anything yet here.
+
+11. Events ->
+    *   onClick event => access element by getElementById('owl')
+    <code>
+            document.getElementById('owl').onclick = function(){alert("owl clicked")}
+    </code>
+    *   event propagation e.stopPropagation() => stop bubbling & e.preventDefault() => stop default behaviour
+    <code>
+        document.getElementById('images').addEventListener('click', function(e){
+            console.log("clicked inside the ul");
+        }, false)
+
+        document.getElementById('owl').addEventListener('click', function(e){
+            console.log("owl clicked");
+            // e.stopPropagation()
+        }, false)
+        
+        document.getElementById('google').addEventListener('click',function(e){
+            e.preventDefault();
+            e.stopPropagation()
+            console.log("google clicked");
+        }, false)
+    </code>
+    *   remove img element with li =>
+    <code>
+        document.querySelector('#images').addEventListener('click', function(e){
+            console.log(e.target.tagName);
+            
+            if (e.target.tagName === 'IMG') {
+                console.log(e.target.id);
+                let removeIt = e.target.parentNode
+                removeIt.remove()
+            }
+        })
+    </code>
