@@ -3,7 +3,7 @@ function multipleBy5(num){
     return num*5
 }
 
-multipleBy5.power = 2
+// multipleBy5.power = 2
 
 console.log(multipleBy5(5));
 console.log(multipleBy5.power);
@@ -24,6 +24,7 @@ createUser.prototype.printMe = function(){
 const chai = new createUser("chai", 25)
 const tea = createUser("tea", 250)
 
+chai.increment()
 chai.printMe()
 
 

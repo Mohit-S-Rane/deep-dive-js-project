@@ -265,3 +265,252 @@
             }
         })
     </code>
+    *   How to write code in js_Script => create a fun which is store in one variable & call it by funName()
+    *   how to change text based on time using setTimeout => 
+    <code>
+
+        const changeText = function(){
+            document.querySelector('h1').innerHTML = "best JS series"
+        }
+
+        const changeMe = setTimeout(changeText, 2000)
+    </code>
+    *   stop execution based on time =>
+    <code>
+    
+        document.querySelector('#stop').addEventListener('click', function(){
+            clearTimeout(changeMe)
+            console.log("STOPPED")
+        })
+    </code>
+    </code>
+    *   start & stop execution based on click(setInterval & clearInterval) => 
+    <code>
+
+        document.querySelector('#start').addEventListener('click', () => {
+            console.log('start');
+            const intervalId = setInterval(sayDate, 2000)
+
+            document.querySelector('#stop').addEventListener('click', () => {
+                console.log('Stopped');
+                clearInterval(intervalId)
+            })
+        })
+    </code>
+
+12. Advance One ->
+    *   promise -> manage situations where you must wait for the outcome of an operation.
+    *   promise has one call back function, that function take two parameter resolve & reject.
+    *   first execute promise, then .then() execute => 
+    <code>
+
+        const promiseOne = new Promise(function(resolve, reject){
+
+            setTimeout(function(){
+                console.log('Async task is compelete');
+                resolve()
+            }, 1000)})
+
+        promiseOne.then(function(){
+            console.log("Promise consumed");
+        })
+    </code>
+    *   2nd way to write =>
+    <code>
+
+        new Promise(function(resolve, reject){
+            setTimeout(function(){
+                console.log("Async task 2");
+                resolve()
+            }, 1000)
+
+        }).then(function(){
+            console.log("Async 2 resolved");
+        })
+    </code>
+    *   resolve return value =>
+    <code>
+
+        const promiseThree = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                resolve({username: "Chai", email: "chai@example.com"})
+            }, 1000)
+        })
+
+        promiseThree.then(function(user){
+            console.log(user.username);
+        })
+    </code>
+    *   multiple .then() use =>
+    <code>
+        const promiseFour = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                let error = false
+                if (!error) {
+                    resolve({username: "hitesh", password: "123"})
+                } else {
+                    reject('ERROR: Something went wrong')
+                }
+            }, 1000)
+        })
+
+        promiseFour
+        .then((user) => {
+            console.log(user);
+            return user.username
+        }).then((username) => {
+            console.log(username);
+        }).catch(function(error){
+            console.log(error);
+        }).finally(() => console.log("The promise is either resolved or rejected"))
+    </code>
+    *   catch error is must, when you specify reject in promise defination =>
+    <code>
+
+        const promiseFive = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                let error = false
+                if (!error) {
+                    resolve({username: "javascript", password: "123"})
+                } else {
+                    reject('ERROR: JS went wrong')
+                }
+            }, 1000)
+        });
+        promiseFive.then((value)=> console.log(value)).catch((err)=> console.log(err))
+    </code>
+    *   how to use async & await =>
+    <code>
+        async function consumePromiseFive(){
+           
+            try {
+                const response = await promiseFive
+                console.log(response);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        consumePromiseFive()
+    </code>
+    *   2nd example => 
+    <code>
+
+        async function getAllUsers(){
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/users')
+
+                const data = await response.json()
+                console.log(data);
+            } catch (error) {
+                console.log("E: ", error);
+            }
+        }
+
+        getAllUsers()
+    </code>
+    *   api request =>
+    <code>
+
+        const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', requestUrl)
+        xhr.onreadystatechange = function(){
+            
+            console.log(xhr.readyState);
+            if (xhr.readyState === 4) {
+                const data = JSON.parse(this.responseText)
+                console.log(typeof data);
+                console.log(data.followers);
+            }
+        }
+        xhr.send();
+    </code>
+
+13. Class & OOPS ->
+    *   constructor of class execute during when instance of class created
+    <code>
+
+        class User {
+            constructor(username, email, password){
+                this.username = username;
+                this.email = email;
+                this.password = password
+            }
+
+            encryptPassword(){
+                return `${this.password}abc`
+            }
+            changeUsername(){
+                return `${this.username.toUpperCase()}`
+            }
+
+        }
+
+        const chai = new User("chai", "chai@gmail.com", "123")
+    </code>
+    *   access method of class by className.methodName =>log(chai.encryptPassword());
+    *   behind the scene method which is written inside the class, that method act as a function such as className.prototype.funcName = function which return a value =>
+    <code>
+
+        User.prototype.encryptPassword = function(){
+            return `${this.password}abc`
+        }
+    </code>
+    *   create one object which use to access value of class =>
+    <code>
+
+        const tea = new User("tea", "tea@gmail.com", "123")
+        console.log(tea.encryptPassword());
+    </code>
+    *   object with example =>
+    <code>
+
+        function createUser(username, score){
+            this.username = username
+            this.score = score
+        }
+
+        createUser.prototype.increment = function(){
+            this.score++
+        }
+        createUser.prototype.printMe = function(){
+            console.log(`price is ${this.score}`);
+        }
+
+        const chai = new createUser("chai", 25)
+        const tea = createUser("tea", 250)
+
+        chai.increment()
+        chai.printMe()
+    </code>
+    *   when log(this) within function and that function located within object return scope of global class
+    *   return a object =>
+    <code>
+        function User(username, loginCount, isLoggedIn){
+            this.username = username;
+            this.loginCount = loginCount;
+            this.isLoggedIn = isLoggedIn
+
+            this.greeting = function(){
+                console.log(`Welcome ${this.username}`);
+
+            }
+
+            return this
+        }
+
+        const userOne = new User("hitesh", 12, true)
+        const userTwo = new User("ChaiAurCode", 11, false)
+        console.log(userOne);
+        console.log(userTwo);
+    </code>
+        
+        this return a object => 
+        
+        User {
+            username: 'hitesh',
+            loginCount: 12,
+            isLoggedIn: true,
+            greeting: [Function (anonymous)]
+            }
